@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage{pdfpages}
+\usepackage{enumitem}
+
+\title{Js RealBook \\ \small Key: \VAR{key}}
+\date{\today}
+
+\newcommand{\fakesection}[1]{%
+  \par\refstepcounter{section}% Increase section counter
+  \sectionmark{#1}% Add section mark (header)
+  \addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}% Add section to ToC
+  % Add more content here, if needed.
+}
+
+\begin{document}
+    \clearpage\maketitle
+    \thispagestyle{empty}
+
+    \newpage
+    \tableofcontents
+    \newpage
+
+    \BLOCK{ for pdf, name in pdfs }
+    \fakesection{\VAR{name}}\label{chap:\VAR{name}} \includepdf[pages=-]{\VAR{pdf}}
+    \BLOCK{ endfor }
+
+\end{document}
